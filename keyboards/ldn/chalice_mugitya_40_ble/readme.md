@@ -1,5 +1,11 @@
-# Chalice Mugitya 40 BLE de LDN
+# LDN Chalice Mugitya 40 BLE
 
-Port USB para el modelo original con STM32F411CEU6. El mapa Vial incorpora 46 teclas y cuatro capas. Para desbloquear los ajustes protegidos, sigue el diálogo de Vial y mantén pulsadas las esquinas superior izquierda e inferior derecha del teclado. El desbloqueo usa posiciones físicas y sigue funcionando al reasignar esas teclas.
+This Vial-QMK port supports USB operation on the original STM32F411CEU6 board. Tests on one unit confirmed all 46 factory base-layer assignments, four configurable layers in Vial, and persistent key remapping after a USB power cycle. The firmware stores Vial settings in emulated EEPROM in sector 7 of the microcontroller’s internal flash.
 
-Desde la raíz de Vial-QMK, compila con `make ldn/chalice_mugitya_40_ble:vial`. El cargador original usa paquetes `.Ldn`; el script `pack_ldn.py` recibe el binario de aplicación enlazado en `0x08020000`. Los ajustes se guardan mediante EEPROM emulada en el sector 7 de la flash interna.
+## Build and update
+
+From the Vial-QMK root, run `make ldn/chalice_mugitya_40_ble:vial`. The application is linked at `0x08020000`. Use the included `pack_ldn.py` to wrap the resulting binary in the `.Ldn` format accepted by the factory bootloader.
+
+## Unlock in Vial
+
+Follow the unlock prompt and hold the physical top-left and bottom-right keys together. The firmware checks their matrix positions, so the combination also works after either key has been remapped.
