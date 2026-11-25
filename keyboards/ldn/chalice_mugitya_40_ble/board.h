@@ -1,0 +1,16 @@
+#pragma once
+
+#define STM32_HSECLK 25000000U
+#include_next <board.h>
+
+// Initialize USB and SWD. QMK configures the matrix pins at runtime.
+#undef VAL_GPIOA_MODER
+#define VAL_GPIOA_MODER (PIN_MODE_ALTERNATE(11) | PIN_MODE_ALTERNATE(12) | PIN_MODE_ALTERNATE(13) | PIN_MODE_ALTERNATE(14))
+#undef VAL_GPIOB_MODER
+#define VAL_GPIOB_MODER 0U
+#undef VAL_GPIOA_PUPDR
+#define VAL_GPIOA_PUPDR (PIN_PUPDR_PULLUP(13) | PIN_PUPDR_PULLDOWN(14))
+#undef VAL_GPIOB_PUPDR
+#define VAL_GPIOB_PUPDR 0U
+#undef VAL_GPIOC_PUPDR
+#define VAL_GPIOC_PUPDR 0U
